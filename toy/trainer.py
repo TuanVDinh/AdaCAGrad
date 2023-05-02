@@ -15,12 +15,12 @@ def run_all():
     all_traj = {}
 
     # the initial positions
-    inits = theta_inits
+    inits = w_inits
 
     for i, init in enumerate(inits):
         lr_traj = []
-        # for m in tqdm(["sgd", "mgd", "pcgrad", "cagrad", "acagrad"]):
-        for m in tqdm(["acagrad"]):
+        for m in tqdm(["sgd", "mgd", "pcgrad", "cagrad", "acagrad"]):
+        # for m in tqdm(["acagrad"]):
             all_traj[m] = None
             traj = []
             solver = maps[m]
@@ -62,7 +62,7 @@ def run_all():
 
             # all_traj[m] = torch.tensor(traj)
             all_traj[m] = torch.from_numpy(np.array(traj))
-            torch.save(all_traj, f"theta{i}.pt")
+            torch.save(all_traj, f"w{i}.pt")
 
         lr_traj = torch.tensor(lr_traj)
         torch.save(lr_traj, f"lr_traj{i}.pt")  # changed filename to include index

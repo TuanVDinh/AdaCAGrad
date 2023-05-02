@@ -9,16 +9,16 @@ import settings
 
 def plot_results(F):
     plot3d(F)
-    plot_contour(F, 1, name="./figures/contour_task_1")
-    plot_contour(F, 2, name="./figures/contour_task_2")
-    t1 = torch.load(f"theta0.pt")
-    t2 = torch.load(f"theta1.pt")
-    t3 = torch.load(f"theta2.pt")
+    plot_contour(F, 1, name="./figures/toy_task_1")
+    plot_contour(F, 2, name="./figures/toy_task_2")
+    t1 = torch.load(f"w0.pt")
+    t2 = torch.load(f"w1.pt")
+    t3 = torch.load(f"w2.pt")
 
     length = t1["acagrad"].shape[0]
 
-    # for method in ["sgd", "mgd", "pcgrad", "cagrad", "acagrad"]:
-    for method in ["acagrad"]:
+    for method in ["sgd", "mgd", "pcgrad", "cagrad", "acagrad"]:
+    # for method in ["acagrad"]:
         ranges = list(range(10, length, 1000))
         ranges.append(length - 1)
         for t in tqdm(ranges):
@@ -26,7 +26,7 @@ def plot_results(F):
                          task=0,  # task == 0 meeas plot for both tasks
                          traj=[t1[method][:t], t2[method][:t], t3[method][:t]],
                          plotbar=(method == "acagrad"),
-                         name=f"./figures/contour_{method}_{t}")
+                         name=f"./figures/toy_{method}_{t}")
 
 ################################################################################
 #
@@ -66,8 +66,8 @@ def plot3d(F, xl=11):
         tick.label.set_fontsize(15)
 
     ax.view_init(25)
-    plt.xlabel(r'$\theta_1$', fontsize=15)
-    plt.ylabel(r'$\theta_2$', fontsize=15)
+    plt.xlabel(r'${\mathscr{w}}_1$', fontsize=15)
+    plt.ylabel(r'$\mathscr{w}_2$', fontsize=15)
     plt.tight_layout()
     # plt.savefig(f"3d-obj.pdf", bbox_inches='tight', dpi=1000)
     plt.savefig(f"./figures/3d-obj.png", bbox_inches='tight', dpi=1000)
@@ -141,8 +141,8 @@ def plot_contour(F, task=1, traj=None, xl=12, plotbar=False, name="tmp"):
     ax.set_aspect(1.0/ax.get_data_ratio(), adjustable='box')
     plt.xticks([-10, -5, 0, 5, 10], fontsize=15)
     plt.yticks([-10, -5, 0, 5, 10], fontsize=15)
-    plt.xlabel(r'$\theta_1$', fontsize=15)
-    plt.ylabel(r'$\theta_2$', fontsize=15)
+    plt.xlabel(r'$\mathscr{w}_1$', fontsize=15)
+    plt.ylabel(r'$\mathscr{w}_2$', fontsize=15)
     plt.tight_layout()
     # plt.savefig(f"{name}.pdf", bbox_inches='tight', dpi=100)
     plt.savefig(f"{name}.png", bbox_inches='tight', dpi=100)

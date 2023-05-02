@@ -12,20 +12,20 @@ def get_F_loss(choice):
     return F_loss
 
 
-def get_theta_inits(choice):
+def get_w_inits(choice):
     if choice == "1":
         init_pos1 = [-8.5, 7.5]
         init_pos2 = [-8.5, -5.]
         init_pos3 = [9., 9.]
-        theta_inits = [torch.Tensor(init_pos1), torch.Tensor(init_pos2), torch.Tensor(init_pos3), ]
+        w_inits = [torch.Tensor(init_pos1), torch.Tensor(init_pos2), torch.Tensor(init_pos3), ]
     elif choice == "2":
         init_pos1 = [-8.5, 7.5]
         init_pos2 = [-8.5, -5.]
         init_pos3 = [9., 9.]
-        theta_inits = [torch.Tensor(init_pos1), torch.Tensor(init_pos2), torch.Tensor(init_pos3), ]
+        w_inits = [torch.Tensor(init_pos1), torch.Tensor(init_pos2), torch.Tensor(init_pos3), ]
     else:
         raise ValueError("Invalid choice: {}".format(choice))
-    return theta_inits
+    return w_inits
 
 
 def get_init_pos(choice):
@@ -66,20 +66,20 @@ def get_average(choice):
 F_l = [problem.Toy, problem.new_loss_func]
 
 ##########################
-# kappa = 0.99
-# sigma = 0.5
-# alpha = 0.001
-# num_iter = 100000
-
-kappa = 0.7
+kappa = 0.99
 sigma = 0.5
-alpha = 0.8
-num_iter = 10
+alpha = 0.001
+num_iter = 100000
+
+# kappa = 0.7
+# sigma = 0.5
+# alpha = 0.8
+# num_iter = 500
 
 choice = "1"
 
 F_loss = get_F_loss(choice)
-theta_inits = get_theta_inits(choice)
+w_inits = get_w_inits(choice)
 init_pos1, init_pos2, init_pos3 = get_init_pos(choice)
 pareto_bar1, pareto_bar2 = get_pareto_bars(choice)
 average = get_average(choice)
