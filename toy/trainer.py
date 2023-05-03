@@ -36,10 +36,10 @@ def run_all():
                 traj.append(x.detach().numpy().copy())
                 f_prev, grads = F(x, True)
                 if m == "acagrad":
-                    g, w = solver(grads, c=0.5)
+                    g, w = solver(grads, c=c)
                     lr_traj.append(opt.param_groups[0]['lr'])
                 elif m == "cagrad":
-                    g = solver(grads, c=0.5)
+                    g = solver(grads, c=c)
                 else:
                     g = solver(grads)
                 opt.zero_grad()

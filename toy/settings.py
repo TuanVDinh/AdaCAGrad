@@ -66,15 +66,17 @@ def get_average(choice):
 F_l = [problem.Toy, problem.new_loss_func]
 
 ##########################
-kappa = 0.99
-sigma = 0.5
-alpha = 0.001
-num_iter = 100000
-
-# kappa = 0.7
+# kappa = 0.99
 # sigma = 0.5
-# alpha = 0.8
-# num_iter = 500
+# alpha = 0.001
+# num_iter = 100000
+# c = 0.5
+
+kappa = 0.7
+sigma = 0.5
+alpha = 0.8
+num_iter = 500
+c = 0.5
 
 choice = "1"
 
