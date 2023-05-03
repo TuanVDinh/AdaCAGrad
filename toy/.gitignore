@@ -13,3 +13,6 @@ cityscapes/*.pt
 toy/*.pt
 toy/*.pdf
 toy/*.png
+
+AdaCAGrad/toy/**
+
